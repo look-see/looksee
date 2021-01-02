@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/look-see/looksee/issues"
   },
-  "homepage": "https://github.com/look-see/looksee#readme"
+  "homepage": "https://github.com/look-see/looksee#readme",
+  "dependencies": {
+    "boxen": "^5.0.0",
+    "chalk": "^4.1.0",
+    "puppeteer": "^5.5.0",
+    "snowpack": "^3.0.0-rc.2"
+  }
 }
