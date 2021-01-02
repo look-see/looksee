@@ -4,4 +4,4 @@
 A simple and straightforward way of testing web components.
 
 ###### Copyright (c) 2021 Allan Mobley Jr. All rights reserved.
-###### Licensed under the [MIT](./LISCENSE.txt) license.
+###### Licensed under the [MIT](./LICENSE) license.
