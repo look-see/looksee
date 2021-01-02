@@ -11,6 +11,7 @@
     "url": "git+https://github.com/look-see/looksee.git"
   },
   "author": "Allan Mobley Jr",
+  "icon": "./assets/logo.png",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/look-see/looksee/issues"
