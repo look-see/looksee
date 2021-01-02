@@ -2,7 +2,7 @@
   "name": "looksee",
   "version": "1.0.0-alpha-0",
   "description": "A simple and straightforward way of testing web components.",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,9 @@
     "url": "https://github.com/look-see/looksee/issues"
   },
   "homepage": "https://github.com/look-see/looksee#readme",
+  "bin": {
+    "looksee": "./bin/index.js"
+  },
   "dependencies": {
     "boxen": "^5.0.0",
     "chalk": "^4.1.0",
