@@ -27,12 +27,12 @@ console.log(greetBox);
 
 const snowpackConfig = options.snowpack
     ? options.snowpack
-    : './src/snowpack.config.js';
+    : 'node_modules/looksee/snowpack.config.js';
 
 const snowpack = exec(`npx snowpack dev --config ${snowpackConfig} ${options.open ? '--devOptions.open default' : ''}`);
 
 snowpack.stdout.on("data", data => {
-    console.log(`snowpack stdout: ${data}`);
+    console.log(data);
 });
 
 snowpack.stderr.on("data", data => {
@@ -40,11 +40,11 @@ snowpack.stderr.on("data", data => {
 });
 
 snowpack.on('error', (error) => {
-    console.exception(`snowpack error: ${error.message}`);
+    console.log(`snowpack error: ${error.message}`);
 });
 
 snowpack.on("close", code => {
-    console.exception(`snowpack exited with code ${code}`);
+    console.log(`snowpack exited with code ${code}`);
 });
 
 let throwError = false;
