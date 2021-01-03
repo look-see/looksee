@@ -4,6 +4,13 @@ const chalk = require('chalk');
 const boxen = require('boxen');
 const puppeteer = require('puppeteer');
 const { exec } = require('child_process');
+const yargs = require("yargs");
+
+const options = yargs
+ .usage("Usage: -s <path> -o")
+ .option("s", { alias: "snowpack", describe: "Path to dev test snowpack.config.js file.", type: "string", demandOption: false })
+ .option("o", { alias: "open", describe: "Whether to open browser tab in local development.", type: "boolean", demandOption: false })
+ .argv;
 
 const greeting = chalk.bold.yellow('LET\'S HAVE A 👀 LOOKSEE!');
 
@@ -18,11 +25,15 @@ const greetBox = boxen(greeting, boxenOptions);
 
 console.log(greetBox);
 
-const snowpack = exec("npx snowpack dev --config snowpack.test-runner.config.js");
+const snowpackConfig = options.snowpack
+    ? options.snowpack
+    : './src/snowpack.config.js';
 
-// snowpack.stdout.on("data", data => {
-//     console.log(`stdout: ${data}`);
-// });
+const snowpack = exec(`npx snowpack dev --config ${snowpackConfig} ${options.open ? '--devOptions.open default' : ''}`);
+
+snowpack.stdout.on("data", data => {
+    console.log(`snowpack stdout: ${data}`);
+});
 
 snowpack.stderr.on("data", data => {
     console.log(`snowpack stderr: ${data}`);

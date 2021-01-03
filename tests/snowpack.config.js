@@ -6,8 +6,13 @@ module.exports = {
   mount: {
     tests: {url: '/', static: false}
   },
+  experiments:{
+    source: 'skypack'
+  },
   plugins: [],
   installOptions: {},
-  devOptions: {},
+  devOptions: {
+    output: 'stream'
+  },
   buildOptions: {},
 };
