@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
+const yargs = require("yargs");
 const chalk = require('chalk');
 const boxen = require('boxen');
-const puppeteer = require('puppeteer');
-const startSnowpack = require('./snowpack');
 
-const yargs = require("yargs");
+const snowpack = require('./snowpack');
+const messages = require('./messages');
+const puppeteer = require('./puppeteer');
 
 const options = yargs
  .usage("Usage: -s <path> -o")
@@ -13,93 +14,14 @@ const options = yargs
  .option("o", { alias: "open", describe: "Whether to open browser tab in local development.", type: "boolean", demandOption: false })
  .argv;
 
- startSnowpack(options);
-
-const greeting = chalk.bold.yellow('LET\'S HAVE A 👀 LOOKSEE!');
-
-const boxenOptions = {
-  padding: 1,
-  margin: 1,
-  borderStyle: 'round',
-  borderColor: 'green',
-  backgroundColor: '#555555'
-};
-const greetBox = boxen(greeting, boxenOptions);
-
-console.log(greetBox);
-
-
-
-let throwError = false;
-(async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    page.on('console', msg => {
-        switch (msg.type()) {
-            case 'error':
-            case 'assert':
-                console.error('\t' + chalk.red('👀  ' + msg.text()));
-                throwError = true;
-                break;
-            // case 'log':
-            //     console.log(chalk.blue(msg.text()));
-            //     break;
-            case 'info':
-                console.log('    ' + chalk.green(msg.text()));
-                break;
-        }
-    });
-    await page.goto('http://localhost:8080/');
-    // await browser.close();
-
-    // if (throwError)
-    //     throw 'Exit';
-    // else
-    //     process.exit();
-})();
+messages.hello(chalk, boxen);
+snowpack.start(options);
+puppeteer.launch(chalk);
 
 process.on('unhandledRejection', function() {
     process.exit(1);
 });
 
 process.on('SIGINT', function() {
-    const salutation = chalk.bold.yellow('THANKS FOR USING 👀 LOOKSEE!');
-    const goodByeBox = boxen(salutation, boxenOptions);
-
-    console.log(goodByeBox);
+    messages.thanks(chalk, boxen);
 });
-
-
-
-// (async () => {
-//   const server = await snowpack.startDevServer({
-//     config:{
-//       mount: {
-//         tests: {url: '/', static: true}
-//       },
-//       devOptions: {
-//         hostname: 'localhost',
-//         port: 8080,
-//         fallback: 'index.html',
-
-//       },
-//       buildOptions: {
-//         out: 'bin',
-//         webModulesUrl: 'web_modules',
-//         metaDir : '__snowpack__'
-//       },
-//       experiments: {
-//         source: 'local',
-//         routes: [],
-//       },
-//       plugins: [],
-//       exclude: [],
-//       testOptions: {
-//         files: []
-//       },
-//       proxy: []
-//     },
-//     cwd: '',
-//     lockfile: {}
-//   });
-// })();
