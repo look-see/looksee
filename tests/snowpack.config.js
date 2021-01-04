@@ -12,8 +12,7 @@ module.exports = {
   plugins: [],
   installOptions: {},
   devOptions: {
-    output: 'stream',
-    port: 8082
+    output: 'stream'
   },
   buildOptions: {},
 };
