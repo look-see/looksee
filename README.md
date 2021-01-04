@@ -1,4 +1,4 @@
-
+![Tests](https://github.com/look-see/looksee/workflows/Tests/badge.svg)
 
 # <img align="center" src="https://avatars2.githubusercontent.com/u/76873423" width="96" height="96" />  <img align="center"  src="./assets/looksee.png" />
 A simple and straightforward way of testing web components.
