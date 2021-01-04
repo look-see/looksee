@@ -8,7 +8,8 @@ const messages = require('./messages');
 const watcher = require('./watcher');
 
 const options = yargs
- .usage("Usage: looksee [-w|--watch]")
+ .usage("Usage: looksee -s [url]")
+ .option("s", { alias: "server", describe: "Url to the page on the server you wish to test.\nDefaults to http://localhost:8080.", type: "string", demandOption: false })
  .option("w", { alias: "watch", describe: "Whether to watch for changes in test files.", type: "boolean", demandOption: false })
  .argv;
 
@@ -16,7 +17,6 @@ messages.hello(chalk, boxen);
 watcher.watch(options, chalk);
 
 process.on('unhandledRejection', function() {
-    //thanks(chalk, boxen);
     process.exit(1);
 });
 

@@ -19,7 +19,7 @@ function watch(options, chalk) {
       }
     });
 
-    await page.goto('http://localhost:8080/');
+    await page.goto(options.server || 'http://localhost:8080');
     
     if (!options.watch) {
       await browser.close();
