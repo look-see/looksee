@@ -16,9 +16,9 @@ const options = yargs
 messages.hello(chalk, boxen);
 watcher.watch(options, chalk);
 
-process.on('unhandledRejection', function() {
-    process.exit(1);
-});
+// process.on('unhandledRejection', function() {
+//     process.exit(1);
+// });
 
 process.on('SIGINT', function() {
     process.exit(0);

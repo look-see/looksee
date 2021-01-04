@@ -4,14 +4,14 @@ function watch(options, chalk) {
   (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    let throwError = false;
+    let reportError = false;
 
     page.on('console', msg => {
       switch (msg.type()) {
         case 'error':
         case 'assert':
           console.error('\t' + chalk.red('👀  ' + msg.text()));
-          throwError = true;
+          reportError = true;
           break;
         case 'info':
           console.log('    ' + chalk.green(msg.text()));
@@ -23,8 +23,8 @@ function watch(options, chalk) {
     
     if (!options.watch) {
       await browser.close();
-      if (throwError)
-        throw 'Exit';
+      if (reportError)
+        process.exit(1);
       else
         process.exit(0);
     }
