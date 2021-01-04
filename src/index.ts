@@ -17,14 +17,12 @@ const options = yargs
 messages.hello(chalk, boxen);
 
 if (options.automation) {
-    const snowpack = require('child_process')
-        .exec('npx snowpack dev --config tests/snowpack.config.js', (error, stdout, stderr) => {
-            if (error) {
-                console.error(`exec error: ${ error }`);
-                process.exit(1);
-            }
+    // Cannot use callback in exec because dev server will not stop unless forced and we need it
+    const snowpack = require('child_process').exec('npx snowpack dev --config tests/snowpack.config.js');
+        const timeoutObj = setTimeout(() => {
+            // Give server time to start. Snowpack dev is pretty fast.
             watcher.watch(options, chalk);
-        });
+          }, 1000);
 } else {
     watcher.watch(options, chalk);
 }
