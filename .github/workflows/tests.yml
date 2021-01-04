@@ -63,15 +63,6 @@ jobs:
         shell: bash
         run: npm run build
 
-      ################
-      # Start Server #
-      ################
-      - name: Start Server
-        shell: bash
-        timeout-minutes: 1
-        run: |
-          npm run start
-
       #############
       # Run Tests #
       #############

@@ -21,7 +21,7 @@ function watch(options, chalk) {
 
     await page.goto(options.server || 'http://localhost:8080');
     
-    if (!options.watch) {
+    if (!options.watch || options.automation) {
       await browser.close();
       if (reportError)
         process.exit(1);
