@@ -15,7 +15,6 @@ name: Tests
 # Start the job on all pulls #
 ##############################
 on:
-  push:
   pull_request:
     branches: [main]
 

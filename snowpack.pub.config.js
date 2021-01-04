@@ -4,15 +4,23 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    src: {url: '/'}
+    src: {url: '/bin'}
   },
-  plugins: [],
+  plugins: [
+    [
+      '@snowpack/plugin-run-script',
+      {
+        // Copy files needed for npm package publishing
+        cmd: 'copy package.json publish && copy README.md publish ',
+      },
+    ]
+  ],
   installOptions: {
     treeshake: true
   },
   devOptions: {},
   buildOptions: {
-    out: 'bin',
+    out: 'publish',
     clean: true,
   }
 };

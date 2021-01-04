@@ -5,23 +5,27 @@
   "main": "bin/index.js",
   "scripts": {
     "build": "snowpack build",
+    "build:npm": "snowpack build --config snowpack.pub.config.js && rimraf publish/__snowpack__",
     "start": "snowpack dev --config tests/snowpack.config.js",
     "test": "node .",
-    "test:ci": "node . -a"
+    "test:ci": "node . -a",
+    "tag": "npm version major",
+    "tag:alpha": "npm version prerelease --preid=alpha",
+    "tag:beta": "npm version prerelease --preid=beta"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/look-see/looksee.git"
   },
   "author": "Allan Mobley Jr",
-  "icon": "./assets/logo.png",
+  "icon": "assets/logo.png",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/look-see/looksee/issues"
   },
   "homepage": "https://github.com/look-see/looksee#readme",
   "bin": {
-    "looksee": "./bin/index.js"
+    "looksee": "bin/index.js"
   },
   "dependencies": {
     "boxen": "^5.0.0",
@@ -34,6 +38,7 @@
     "@types/node": "^14.14.19",
     "@types/yargs": "^15.0.12",
     "lit-element": "^2.4.0",
+    "rimraf": "^3.0.2",
     "snowpack": "^3.0.0-rc.2"
   }
 }
