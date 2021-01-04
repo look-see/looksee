@@ -7,9 +7,11 @@ module.exports = {
     src: {url: '/'}
   },
   plugins: [],
-  installOptions: {},
+  installOptions: {
+    treeshake: true
+  },
   devOptions: {},
   buildOptions: {
     out: 'bin'
-  },
+  }
 };

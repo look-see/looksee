@@ -13,7 +13,7 @@ module.exports = {
     [
       '@snowpack/plugin-run-script',
       {
-        cmd: 'node .', // production build command
+        cmd: 'node . -w', // production build command
         name: 'looksee',
         // watch: 'node .', // (optional) dev server command
         output: 'stream'

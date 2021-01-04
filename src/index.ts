@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const boxen = require('boxen');
 
 const messages = require('./messages');
-const puppeteer = require('./watcher');
+const watcher = require('./watcher');
 
 const options = yargs
  .usage("Usage: looksee [-w|--watch]")
@@ -13,13 +13,17 @@ const options = yargs
  .argv;
 
 messages.hello(chalk, boxen);
-puppeteer.launch(options, chalk);
+watcher.watch(options, chalk);
 
 process.on('unhandledRejection', function() {
-    messages.thanks(chalk, boxen);
+    //thanks(chalk, boxen);
     process.exit(1);
 });
 
 process.on('SIGINT', function() {
+    process.exit(0);
+});
+
+process.on('exit', function() {
     messages.thanks(chalk, boxen);
 });

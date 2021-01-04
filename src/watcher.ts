@@ -1,4 +1,4 @@
-function launch(options, chalk) {
+function watch(options, chalk) {
   const puppeteer = require('puppeteer');
   
   (async () => {
@@ -21,7 +21,7 @@ function launch(options, chalk) {
 
     await page.goto('http://localhost:8080/');
     
-    if (options.automation) {
+    if (!options.watch) {
       await browser.close();
       if (throwError)
         throw 'Exit';
@@ -31,4 +31,4 @@ function launch(options, chalk) {
   })();
 }
 
-module.exports.launch = launch;
+module.exports.watch = watch;
