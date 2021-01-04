@@ -23,6 +23,11 @@ if (options.automation) {
 
 watcher.watch(options, chalk);
 
+process.on('unhandledRejection', function() {
+    messages.thanks(chalk, boxen);
+    process.exit(1);
+});
+
 process.on('SIGINT', function() {
     process.exit(0);
 });

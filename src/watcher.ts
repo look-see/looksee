@@ -24,7 +24,7 @@ function watch(options, chalk) {
     if (!options.watch || options.automation) {
       await browser.close();
       if (reportError)
-        process.exit(1);
+        throw 'Error';
       else
         process.exit(0);
     }
