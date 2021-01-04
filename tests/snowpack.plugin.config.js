@@ -9,7 +9,17 @@ module.exports = {
   experiments:{
     source: 'skypack'
   },
-  plugins: [],
+  plugins: [
+    [
+      '@snowpack/plugin-run-script',
+      {
+        cmd: 'node . -w', // production build command
+        name: 'looksee',
+        // watch: 'node .', // (optional) dev server command
+        output: 'stream'
+      },
+    ]
+  ],
   installOptions: {},
   devOptions: {
     output: 'stream'
