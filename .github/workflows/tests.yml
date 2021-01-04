@@ -75,7 +75,6 @@ jobs:
       # Run Tests #
       #############
       - name: Run Tests
-        if: ${{ success() }}
         shell: bash
         run: |
           npm run test
