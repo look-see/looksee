@@ -6,7 +6,8 @@
   "scripts": {
     "build": "snowpack build",
     "start": "snowpack dev --config tests/snowpack.config.js",
-    "test": "node ."
+    "test": "node .",
+    "test:ci": "node . -a"
   },
   "repository": {
     "type": "git",
