@@ -8,29 +8,35 @@ const messages = require('./messages');
 const watcher = require('./watcher');
 
 const options = yargs
- .usage("Usage: looksee -s [url]")
- .option("s", { alias: "server", describe: "Url to the page on the server you wish to test.\nDefaults to http://localhost:8080.", type: "string", demandOption: false })
- .option("w", { alias: "watch", describe: "Whether to watch for changes in test files.", type: "boolean", demandOption: false })
- .option("a", { alias: "automation", describe: "Set this flag when running automation scripts in ci/cd pipeline.", type: "boolean", demandOption: false })
- .argv;
+    .usage("Usage: looksee -s [url]")
+    .option("s", { alias: "server", describe: "Url to the page on the server you wish to test.\nDefaults to http://localhost:8080.", type: "string", demandOption: false })
+    .option("w", { alias: "watch", describe: "Whether to watch for changes in test files.", type: "boolean", demandOption: false })
+    .option("a", { alias: "automation", describe: "Set this flag when running automation scripts in ci/cd pipeline.", type: "boolean", demandOption: false })
+    .argv;
 
 messages.hello(chalk, boxen);
 
 if (options.automation) {
     const snowpack = require('child_process')
-        .exec('npx snowpack dev --config tests/snowpack.config.js');
+        .exec('npx snowpack dev --config tests/snowpack.config.js', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${ error }`);
+                process.exit(1);
+            }
+            watcher.watch(options, chalk);
+        });
+} else {
+    watcher.watch(options, chalk);
 }
 
-watcher.watch(options, chalk);
-
-process.on('unhandledRejection', function() {
+process.on('unhandledRejection', function () {
     process.exit(1);
 });
 
-process.on('SIGINT', function() {
+process.on('SIGINT', function () {
     process.exit(0);
 });
 
-process.on('exit', function() {
+process.on('exit', function () {
     messages.thanks(chalk, boxen);
 });
