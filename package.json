@@ -4,7 +4,9 @@
   "description": "A simple and straightforward way of testing web components.",
   "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "snowpack build",
+    "start": "snowpack dev --config tests/snowpack.config.js",
+    "test": "node ."
   },
   "repository": {
     "type": "git",
