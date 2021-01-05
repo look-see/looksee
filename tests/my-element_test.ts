@@ -1,9 +1,9 @@
 import test from './test-wrapper';
 import type { MyElement } from 'my-element';
 
-const testComponent1:MyElement = document.getElementById('test-component-1') as MyElement;
-
 test('#test-component-1 renders with default property values', async () => {
+  const testComponent1:MyElement = document.getElementById('test-component-1') as MyElement;
+
   // testComponent1.name='Allan';
   console.assert(testComponent1.name === 'World', `Actual: ${testComponent1.name}`);
   await testComponent1.updateComplete;

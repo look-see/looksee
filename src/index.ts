@@ -1,30 +1,30 @@
 #!/usr/bin/env node
 
-const yargs = require("yargs");
-const chalk = require('chalk');
-const boxen = require('boxen');
-
+var argv = require('yargs/yargs')(process.argv.slice(2))
+    .usage('Usage: looksee -u <url>')
+    .option("u", { alias: "url", describe: "A space-separated list of urls to the html pages that have testing scripts embedded.", type: "string", demandOption: true })
+    .option("w", { alias: "watch", describe: "Whether to watch for changes.", type: "boolean", demandOption: false })
+    .option("a", { alias: "automation", describe: "Set this flag when running automation scripts in ci/cd pipeline, such as GitHub Actions.", type: "boolean", demandOption: false })
+    .array('u')
+    .help('h')
+    .alias('h', 'help')
+    .epilog('Copyright (c) 2021 Allan Mobley Jr. All rights reserved.')
+    .argv;
+    
 const messages = require('./messages');
 const watcher = require('./watcher');
 
-const options = yargs
-    .usage("Usage: looksee -s [url]")
-    .option("s", { alias: "server", describe: "Url to the page on the server you wish to test.\nDefaults to http://localhost:8080.", type: "string", demandOption: false })
-    .option("w", { alias: "watch", describe: "Whether to watch for changes in test files.", type: "boolean", demandOption: false })
-    .option("a", { alias: "automation", describe: "Set this flag when running automation scripts in ci/cd pipeline.", type: "boolean", demandOption: false })
-    .argv;
+messages.hello();
 
-messages.hello(chalk, boxen);
-
-if (options.automation) {
+if (argv.automation) {
     // Cannot use callback in exec because dev server will not stop unless forced and we need it
-    const snowpack = require('child_process').exec('npx snowpack dev --config tests/snowpack.config.js');
+    const snowpack = require('child_process').exec('npx snowpack dev --config snowpack.ci.config.js');
         const timeoutObj = setTimeout(() => {
             // Give server time to start. Snowpack dev is pretty fast.
-            watcher.watch(options, chalk);
+            watcher.watch(argv);
           }, 1000);
 } else {
-    watcher.watch(options, chalk);
+    watcher.watch(argv);
 }
 
 process.on('unhandledRejection', function () {
@@ -36,5 +36,5 @@ process.on('SIGINT', function () {
 });
 
 process.on('exit', function () {
-    messages.thanks(chalk, boxen);
+    messages.thanks();
 });
