@@ -1,6 +1,6 @@
-function watch(options, chalk) {
+function watch(argv) {
   const puppeteer = require('puppeteer');
-  
+  const chalk = require('chalk');
   (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -19,9 +19,11 @@ function watch(options, chalk) {
       }
     });
 
-    await page.goto(options.server || 'http://localhost:8080');
+    for (let i = 0; i < argv.url.length; i++) {
+      await page.goto(argv.url[i]);
+    }
     
-    if (!options.watch || options.automation) {
+    if (!argv.watch || argv.automation) {
       await browser.close();
       if (reportError)
         throw 'Error';

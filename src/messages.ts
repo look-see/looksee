@@ -1,4 +1,7 @@
-function hello(chalk, boxen) {
+const chalk = require('chalk');
+const boxen = require('boxen');
+
+function hello() {
   const greeting = chalk.bold.yellow('LET\'S HAVE A 👀 LOOKSEE!');
   const boxenOptions = {
     padding: 1,
@@ -13,7 +16,7 @@ function hello(chalk, boxen) {
 
 module.exports.hello = hello;
 
-function thanks(chalk, boxen) {
+function thanks() {
   const salutation = chalk.bold.yellow('THANKS FOR USING 👀 LOOKSEE!');
   const boxenOptions = {
     padding: 1,

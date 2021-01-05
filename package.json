@@ -1,14 +1,15 @@
 {
   "name": "looksee",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "A simple and straightforward way of testing web components.",
   "main": "bin/index.js",
   "scripts": {
     "build": "snowpack build",
     "build:npm": "snowpack build --config snowpack.pub.config.js && rimraf publish/__snowpack__",
     "start": "snowpack dev --config tests/snowpack.config.js",
-    "test": "node .",
-    "test:ci": "node . -a",
+    "test": "node . -u http://localhost:8080/ http://localhost:8080/about",
+    "test:watch": "node . -w -u http://localhost:8080/ http://localhost:8080/about",
+    "test:ci": "node . -a -u http://localhost:8080/ http://localhost:8080/about",
     "tag": "npm version major",
     "tag:alpha": "npm version prerelease --preid=alpha",
     "tag:beta": "npm version prerelease --preid=beta"

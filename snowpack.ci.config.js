@@ -12,7 +12,8 @@ module.exports = {
   plugins: [],
   installOptions: {},
   devOptions: {
-    output: 'stream'
+    output: 'stream',
+    open: 'none'
   },
   buildOptions: {},
 };
