@@ -1,7 +1,7 @@
 <img align="center" src="https://avatars2.githubusercontent.com/u/76873423" width="96" height="96" />
 
 # New
-  * Alpha release.
+  * Added support for multiple test urls.
 
 # Fixes
   * none
