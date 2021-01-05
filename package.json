@@ -9,7 +9,7 @@
     "start": "snowpack dev --config tests/snowpack.config.js",
     "test": "node . -u http://localhost:8080/ http://localhost:8080/about",
     "test:watch": "node . -w -u http://localhost:8080/ http://localhost:8080/about",
-    "test:ci": "node . -a",
+    "test:ci": "node . -a -u http://localhost:8080/ http://localhost:8080/about",
     "tag": "npm version major",
     "tag:alpha": "npm version prerelease --preid=alpha",
     "tag:beta": "npm version prerelease --preid=beta"
