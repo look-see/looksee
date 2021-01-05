@@ -4,7 +4,7 @@
 ## GitHub Releases Action ##
 ############################
 ############################
-name: Releases
+name: cd
 
 #
 # Documentation:
@@ -31,7 +31,7 @@ jobs:
 
   releases:
     # Name the Job
-    name: Releases
+    name: cd
     # Set the agent to run on
     runs-on: ubuntu-latest
 
