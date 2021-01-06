@@ -13,10 +13,10 @@ test('#test-component-2 renders with appropriate count after two button click si
   const testComponent1:MyElement = document.getElementById('test-component-2') as MyElement;
   const button = testComponent1.shadowRoot!.querySelector('button');
 
-  button?.click();
-  button?.click();
-  // button?.click();
+  button!.click();
+  button!.click();
+  // button!.click();
   await testComponent1.updateComplete;
   console.assert(testComponent1.count === 2, `Actual: ${testComponent1.count}`);
-  console.assert(testComponent1.shadowRoot!.querySelector('button')!.innerText === 'Click Count: 2', `Actual: ${testComponent1.shadowRoot!.querySelector('button')!.innerText}`);
+  console.assert(button!.innerText === 'Click Count: 2', `Actual: ${button!.innerText}`);
 });
