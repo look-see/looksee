@@ -9,4 +9,5 @@
 # Breaking
   * none
 
-###### Copyright (c) 2020 QBCart Inc. All rights reserved.
+###### Copyright (c) 2021 Allan Mobley Jr. All rights reserved.
+###### Licensed under the [MIT](./LICENSE) license.
