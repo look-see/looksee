@@ -11,7 +11,7 @@ module.exports = {
       '@snowpack/plugin-run-script',
       {
         // Copy files needed for npm package publishing
-        cmd: 'cp package.json publish && cp README.md publish ',
+        cmd: 'cp package.json publish && cp README.md publish && cp assets/logo.png publish',
       },
     ]
   ],

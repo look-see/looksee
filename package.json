@@ -19,12 +19,21 @@
     "url": "git+https://github.com/look-see/looksee.git"
   },
   "author": "Allan Mobley Jr",
-  "icon": "assets/logo.png",
+  "icon": "logo.png",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/look-see/looksee/issues"
   },
   "homepage": "https://github.com/look-see/looksee#readme",
+  "keywords": [
+    "web components",
+    "testing",
+    "javascript",
+    "typescript",
+    "lit-element",
+    "automation",
+    "browser"
+  ],
   "bin": {
     "looksee": "bin/index.js"
   },
